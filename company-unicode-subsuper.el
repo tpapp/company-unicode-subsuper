@@ -25,7 +25,7 @@
 (require 'company)
 
 (defconst company-unicode-subsuper--regex
-  (rx (or "_" "^") (zero-or-more alnum))
+  (rx (or "_" "^") (zero-or-more (or alnum (char "()+-="))))
   "Regex for matching super- and subscripts recognized.")
 
 (defun company-unicode-subsuper--entry (char &optional name-table)
@@ -69,16 +69,17 @@ List compiled from Wikipedia, https://en.wikipedia.org/wiki/Unicode_subscripts_a
 
 (defun company-unicode-subsuper--substitute (arg)
   "Replace ARG before point with its :unicode property."
-  (let ((pos (point)))
-    (when (looking-back arg)
-      (delete-region (match-beginning 0) pos)
+  (let* ((pos (point))
+         (start (- pos (length arg))))
+    (when (equal (buffer-substring start pos) arg)
+      (delete-region start pos)
       (insert (get-text-property 0 :unicode arg)))))
 
-(defun company-unicode-subsuper-backend (command &optional arg &rest ignored)
+(defun company-unicode-subsuper (command &optional arg &rest ignored)
   "Company backend for typing Unicode super- and subscripts. You need a font that supports them. Only a small subset of letters have Unicode super- and subscript equivalents, see the definition of COMPANY-UNICODE-SUBSUPER-TABLE for a full list. Note that the Greek letters are typed as _beta and similar, without the \\ you would use in LaTeX."
   (interactive (list 'interactive))
   (case command
-    (interactive (company-begin-backend 'company-unicode-subsuper-backend))
+    (interactive (company-begin-backend 'company-unicode-subsuper))
     (prefix (when (looking-back company-unicode-subsuper--regex)
               (match-string 0)))
     ;; a space is added to each candidate to allow replacement of the full form.

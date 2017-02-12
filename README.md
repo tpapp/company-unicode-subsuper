@@ -4,7 +4,8 @@
 
 Run
 ```emacs-lisp
-(add-to-list 'company-backends 'company-unicode-subsuper-backend)
+(add-to-list 'company-backends 'company-unicode-subsuper)
+(setq-local company-minimum-prefix-length 1)
 ```
 and enable `company-mode`.
 
