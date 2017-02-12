@@ -7,7 +7,7 @@ Run
 (add-to-list 'company-backends 'company-unicode-subsuper)
 (setq-local company-minimum-prefix-length 1)
 ```
-and enable `company-mode`.
+and enable `company-mode`. Then complete `_1` to `₁`, `^+` to `⁺`, `^theta` to `ᶿ`, etc.
 
 ## Supported characters
 
