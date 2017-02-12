@@ -16,3 +16,7 @@ See the list of numbers, operators, small, capital, and Greek letters that Unico
 ## Bugs and contributions
 
 If you notice a bug or would like to contribute, please open an issue on Github or submit a PR.
+
+## Acknowledgments
+
+I learned a lot about writing [company-mode](http://company-mode.github.io/) macros from [two blog](http://sixty-north.com/blog/writing-the-simplest-emacs-company-mode-backend) [posts](http://sixty-north.com/blog/a-more-full-featured-company-mode-backend) Austin Bingham. Many workarounds were inspired by [company-math](https://github.com/vspinu/company-math).
