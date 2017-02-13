@@ -80,7 +80,7 @@ List compiled from Wikipedia, https://en.wikipedia.org/wiki/Unicode_subscripts_a
   (interactive (list 'interactive))
   (case command
     (interactive (company-begin-backend 'company-unicode-subsuper))
-    (prefix (when (looking-back company-unicode-subsuper--regex)
+    (prefix (when (looking-back company-unicode-subsuper--regex (point-at-bol))
               (match-string 0)))
     ;; a space is added to each candidate to allow replacement of the full form.
     ;; workaround for https://github.com/company-mode/company-mode/issues/476
