@@ -46,15 +46,22 @@
     (?γ . "gamma")
     (?δ . "delta")
     (?θ . "theta")
-    (?ι . "iota")
+    (?ɩ . "iota")
     (?φ . "varphi")                     ; varphi instead of phi, as in LaTeX
     (?χ . "chi")
+    (?ρ . "rho")
     (?− . "-"))                         ; replace #x2212 with minus sign
   "table for entering characters outside the ASCII range. Follows conventions of LaTeX for Greek letters, but without the \\ prefix.")
 
 (defconst company-unicode-subsuper-table
   (mapcar (lambda (c)
-            (company-unicode-subsuper--entry c company-unicode-name-table))
+            (let ((entry (company-unicode-subsuper--entry
+                          c company-unicode-name-table)))
+              (mapc (lambda (c)         ; sanity check
+                      (unless (< c 128)
+                        (error "character %c is not ASCII" c)))
+                    entry)
+              entry))
           (string-to-list
            (concat
             ;; numbers and operators
