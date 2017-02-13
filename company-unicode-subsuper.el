@@ -30,14 +30,15 @@
 
 (defun company-unicode-subsuper--entry (char &optional name-table)
   "Create an entry from CHAR for the lookup table. By default, the string used for entering the character is prefixed by _ or ^ for sub- and superscripts, respectively, but NAME-TABLE can be used to provide a different translation (eg for Greek letters)."
-  (cl-flet ((entry (string replacement)
-                (add-text-properties 0 1 `(:unicode ,replacement) string)
-                string)
-            (lookup-name (orig-char)
-                    (alist-get orig-char name-table (string orig-char))))
+  (cl-flet ((entry (prefix orig-char replacement-char)
+                   (let* ((name (alist-get orig-char name-table
+                                           (string orig-char)))
+                          (string (concat prefix name)))
+                     (add-text-properties 0 1 `(:unicode ,replacement-char) string)
+                     string)))
     (pcase (get-char-code-property char 'decomposition)
-      (`(super ,orig-char) (entry (format "^%s" (lookup-name orig-char)) char))
-      (`(sub ,orig-char) (entry (format "_%s" (lookup-name orig-char)) char))
+      (`(super ,orig-char) (entry "^" orig-char char))
+      (`(sub ,orig-char) (entry "_" orig-char char))
       (_ (error "Character %c is not a sub- or superscript.") char))))
 
 (defconst company-unicode-name-table
