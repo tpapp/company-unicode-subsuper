@@ -46,9 +46,10 @@
     (?δ . "delta")
     (?θ . "theta")
     (?ι . "iota")
-    (?φ . "varphi")
-    (?χ . "chi"))
-  "Table for entering characters outside the ASCII range. Follows conventions of LaTeX, but without the \\ prefix.")
+    (?φ . "varphi")                     ; varphi instead of phi, as in LaTeX
+    (?χ . "chi")
+    (?− . "-"))                         ; replace #x2212 with minus sign
+  "table for entering characters outside the ASCII range. Follows conventions of LaTeX for Greek letters, but without the \\ prefix.")
 
 (defconst company-unicode-subsuper-table
   (mapcar (lambda (c)
