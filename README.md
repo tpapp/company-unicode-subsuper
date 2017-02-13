@@ -11,7 +11,16 @@ and enable `company-mode`. Then complete `_1` to `₁`, `^+` to `⁺`, `^theta` 
 
 ## Supported characters
 
-See the list of numbers, operators, small, capital, and Greek letters that Unicode supports as super- and subscripts [on Wikipedia](https://en.wikipedia.org/wiki/Unicode_subscripts_and_superscripts). Note that phonetic characters are not supported.
+The list of numbers, operators, small, capital, and Greek letters that Unicode supports as super- and subscripts was obtained [from Wikipedia](https://en.wikipedia.org/wiki/Unicode_subscripts_and_superscripts). 
+
+Here is the complete list:
+
+- numbers and operators `₀₁₂₃₄₅₆₇₈₉₊₋₌₍₎⁰¹²³⁴⁵⁶⁷⁸⁹⁺⁻⁼⁽⁾`
+- capital letters (only superscript) `ᴬᴮᴰᴱᴳᴴᴵᴶᴷᴸᴹᴺᴼᴾᴿᵀᵁⱽᵂ`
+- small letters `ᵃᵇᶜᵈᵉᶠᵍʰⁱʲᵏˡᵐⁿᵒᵖʳˢᵗᵘᵛʷˣʸᶻₐₑₕᵢⱼₖₗₘₙₒₚᵣₛₜᵤᵥₓ`
+- Greek letters `ᵝᵞᵟᶿᶥᵠᵡᵦᵧᵨᵩᵪ`
+
+Greek letters are entered as `_beta`, `_gamma`, `_delta`, `_theta`, `_iota`, `_varphi`, `_chi`, and similarly for subscripts. *Note that phonetic characters are not supported.*
 
 ## Bugs and contributions
 
