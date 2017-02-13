@@ -63,12 +63,12 @@
             "ᵃᵇᶜᵈᵉᶠᵍʰⁱʲᵏˡᵐⁿᵒᵖʳˢᵗᵘᵛʷˣʸᶻ" "ₐₑₕᵢⱼₖₗₘₙₒₚᵣₛₜᵤᵥₓ"
             ;;greek letters
             "ᵝᵞᵟᶿᶥᵠᵡ" "ᵦᵧᵨᵩᵪ")))
-  "A list of completions recognized. The :unicode property of each provides the substitition.
+  "A list of completions recognized. The :UNICODE property of each provides the substitition.
 
 List compiled from Wikipedia, https://en.wikipedia.org/wiki/Unicode_subscripts_and_superscripts")
 
 (defun company-unicode-subsuper--substitute (arg)
-  "Replace ARG before point with its :unicode property."
+  "Replace ARG before point with its :UNICODE property."
   (let* ((pos (point))
          (start (- pos (length arg))))
     (when (equal (buffer-substring start pos) arg)
@@ -76,7 +76,11 @@ List compiled from Wikipedia, https://en.wikipedia.org/wiki/Unicode_subscripts_a
       (insert (get-text-property 0 :unicode arg)))))
 
 (defun company-unicode-subsuper (command &optional arg &rest ignored)
-  "Company backend for typing Unicode super- and subscripts. You need a font that supports them. Only a small subset of letters have Unicode super- and subscript equivalents, see the definition of COMPANY-UNICODE-SUBSUPER-TABLE for a full list. Note that the Greek letters are typed as _beta and similar, without the \\ you would use in LaTeX."
+  "Company backend for typing Unicode super- and subscripts.
+
+Use _ and ^ before the letter or string, eg _a, ^+, etc. Note that the Greek letters are typed as _beta and similar, without the \\ you would use in LaTeX.
+
+Only a small subset of letters have Unicode super- and subscript equivalents, see the definition of COMPANY-UNICODE-SUBSUPER-TABLE for a full list. You need a font that supports the relevant Unicode characters."
   (interactive (list 'interactive))
   (case command
     (interactive (company-begin-backend 'company-unicode-subsuper))
